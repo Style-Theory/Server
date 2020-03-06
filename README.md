@@ -105,3 +105,264 @@
 
   * **Code:** 500 Internal Server Error <br />
     **Content:** `{ "message" : 'Internal Server Error' }`
+
+# 
+**Dress FindAll**
+----
+
+* **URL**
+
+  /
+
+* **Method:**
+
+  `GET`
+
+* **Data Body**
+
+    None
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** 
+    ```
+    {
+        "name": "Long Dress",
+        "price": 500000,
+        "status": false
+    }
+ 
+* **Error Response:**
+
+  * **Code:** 500 Internal Server Error <br />
+    **Content:** `{ "message" : 'Internal Server Error' }`
+
+# 
+**Dress FindMyStuff**
+----
+
+* **URL**
+
+  /mystuff
+
+* **Method:**
+
+  `GET`
+
+* **Data Body**
+
+    None
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** 
+    ```
+    {
+        "name": "Long Dress",
+        "price": 500000,
+        "status": false,
+        "UserId": 2
+    }
+ 
+* **Error Response:**
+
+  * **Code:** 500 Internal Server Error <br />
+    **Content:** `{ "message" : 'Internal Server Error' }`
+
+# 
+**Dress FindMyRent**
+----
+
+* **URL**
+
+  /myorder
+
+* **Method:**
+
+  `GET`
+
+* **Data Body**
+
+    None
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** 
+    ```
+    {
+        "name": "Long Dress",
+        "price": 500000,
+        "status": false,
+        "UserId": 2,
+        "RentId": 1
+    }
+ 
+* **Error Response:**
+
+  * **Code:** 500 Internal Server Error <br />
+    **Content:** `{ "message" : 'Internal Server Error' }`
+
+# 
+**Dress Create**
+----
+
+* **URL**
+
+  /
+
+* **Method:**
+
+  `POST`
+
+* **Data Body**
+
+    `name:[string]` <br />
+    `price:[integer]` <br />
+    `photos:[string]` <br />
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** 
+    ```
+    {
+        "name": "Long Dress",
+        "price": 500000,
+        "photos": "www.imgur/lalalal"
+    }
+ 
+* **Error Response:**
+
+  * **Code:** 401 Unauthorized <br />
+    **Content:** `{ "message" : 'You Must Login First' }`
+
+  * **Code:** 500 Internal Server Error <br />
+    **Content:** `{ "message" : 'Internal Server Error' }`
+
+# 
+**Dress Update**
+----
+
+* **URL**
+  /
+
+* **Method:**
+
+  `PUT`
+
+* **Data Body**
+
+    `name:[string]` <br />
+    `price:[integer]` <br />
+    `photos:[string]` <br />
+
+* **Data Params**
+
+    `id:[integer]` <br />
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** 
+    ```
+    {
+        "name": "Long Dress",
+        "price": 500000,
+        "photos": "www.imgur/lalalal"
+    }
+ 
+* **Error Response:**
+
+  * **Code:** 401 Unauthorized <br />
+    **Content:** `{ "message" : 'You Must Login First' }`
+
+  * **Code:** 404 Not Found <br />
+    **Content:** `{ "message" : 'Not Found' }`
+
+  * **Code:** 500 Internal Server Error <br />
+    **Content:** `{ "message" : 'Internal Server Error' }`
+
+# 
+**Dress Rent**
+----
+
+* **URL**
+
+  /
+
+* **Method:**
+
+  `PATCH`
+
+* **Data Body**
+
+    `status:[boolean]` <br />
+    `due_date:[date]` <br />
+
+* **Data Params**
+
+    `id:[integer]` <br />
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** 
+    ```
+    {
+        "name": "Long Dress",
+        "price": 500000,
+        "photos": "www.imgur/lalalal"
+        "due_date": 10/10/2020
+    }
+ 
+* **Error Response:**
+
+  * **Code:** 401 Unauthorized <br />
+    **Content:** `{ "message" : 'You Must Login First' }`
+
+  * **Code:** 500 Internal Server Error <br />
+    **Content:** `{ "message" : 'Internal Server Error' }`
+
+# 
+**Dress Delete**
+----
+
+* **URL**
+
+  /
+
+* **Method:**
+
+  `DELETE`
+
+* **Data Body**
+
+    NONE
+
+* **Data Params**
+
+    `id:[integer]` <br />
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** 
+    ```
+    {
+        "message": "Success Delete Data Id : 5"
+    }
+ 
+* **Error Response:**
+
+  * **Code:** 401 Unauthorized <br />
+    **Content:** `{ "message" : 'You Must Login First' }`
+
+  * **Code:** 404 Not Found <br />
+    **Content:** `{ "message" : 'Not Found' }`
+
+  * **Code:** 500 Internal Server Error <br />
+    **Content:** `{ "message" : 'Internal Server Error' }`
+
