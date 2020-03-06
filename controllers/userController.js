@@ -1,6 +1,7 @@
 const {User} = require('../models');
 const Helper = require('../helpers/index')
 const {OAuth2Client} = require('google-auth-library');
+const axios = require('axios')
 
 class UserController {
     static register(req,res) {
@@ -14,6 +15,26 @@ class UserController {
             let {id} = result.dataValues
             let token = Helper.getToken({id,email})
             req.headers.token = token
+            const restdb = axios.create({
+                baseURL: 'https://fashiontheory-cca0.restdb.io',
+                headers: {
+                    'Host': 'fashiontheory-cca0.restdb.io',
+                    'Content-Type': ' application/json',
+                    'x-apikey': '7c4b6d3d38f23e47f190f98f11825aa5552c7',
+                    'Cache-Control': 'no-cache'
+                }
+            })
+            restdb({
+                method:'POST',
+                url:'/mail',
+                data : {
+                    to: email,
+                    subject: 'Welcome to Style Theory',
+                    html: 'WELCOME RENTING READY!!',
+                    company: 'STYLE THEORY INC',
+                    sendername: 'Style Theory Bro!'
+                }
+            })
             res.status(200).json({id,email,name,token})
         }).catch((err) => {
             res.status(500).json(err)
