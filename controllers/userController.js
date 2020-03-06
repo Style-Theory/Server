@@ -61,8 +61,6 @@ class UserController {
             });
             const payload = ticket.getPayload();
             const userid = payload['sub'];
-            // If request specified a G Suite domain:
-            //const domain = payload['hd'];
             email = payload.email
             name = payload.name
 
@@ -95,6 +93,7 @@ class UserController {
             })
             .catch((err) => {
                 res.status(400).json(err)
+                console.log(err)
             });
         }
         verify().catch(console.error);

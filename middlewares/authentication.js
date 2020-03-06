@@ -5,9 +5,8 @@ module.exports = {
     authentication: function(req,res,next) {
         let {token} = req.headers
         let decoded = null
-
         try{
-            decoded = jwt.verify(token,process.env.SECRET)
+            const decoded = jwt.verify(token,process.env.SECRET)
             User.findOne({
                 where:{
                     id:decoded.id,
@@ -15,7 +14,7 @@ module.exports = {
                 }
             })
             .then((result) => {
-                req.headers.UserId = decoded.id
+                req.UserId = decoded.id
                 next()
             }).catch((err) => {
                 const error = {

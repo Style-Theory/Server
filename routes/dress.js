@@ -1,12 +1,12 @@
 const router = require('express').Router();
-const Dress = require('../controller/dress')
-const {authentication, authorize} = require('../middlewares')
-
+const Dress = require('../controllers/dress')
+const authentication = require('../middlewares/authentication').authentication
+const authorize = require('../middlewares/authorization')
 
 router.use(authentication);
 router.get('/', Dress.findAll)
-router.get('/mystuff', Dress.findAll)
-router.get('/myorder', Dress.findAll)
+router.get('/mystuff', Dress.findMyStuff)
+router.get('/myorder', Dress.findMyRent)
 router.post('/', Dress.create)
 router.put('/:id', authorize, Dress.update)
 router.patch('/:id', Dress.rent)

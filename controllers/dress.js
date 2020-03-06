@@ -5,19 +5,23 @@ class DressController {
     static findAll(req, res, next) {
         Dress.findAll({
             where : {
-                UserId : {[Op.notLike] : req.headers.UserId}
+                UserId : {[Op.not]: req.UserId}
             },
             order : [['id', 'ASC']]
         })
             .then(data=> res.status(200).json({data}))
-            .catch(err=> next({
+            .catch(err=> {
+                console.log('asd')
+                next({
                 message : `Couldn't Find Any Data`
-            }))
+            })
+        })
     }
     static findMyStuff(req, res, next) {
+
         Dress.findAll({
             where : {
-                UserId : req.headers.UserId
+                UserId : req.UserId
             },
             order : [['id', 'ASC']]
         })
@@ -29,7 +33,7 @@ class DressController {
     static findMyRent(req, res, next) {
         Dress.findAll({
             where : {
-                rent_id : req.headers.UserId
+                rent_id : req.UserId
             },
             order : [['id', 'ASC']]
         })
@@ -42,7 +46,7 @@ class DressController {
         Dress.create({
             name : req.body.name,
             price : req.body.price,
-            UserId : req.headers.UserId,
+            UserId : req.UserId,
             photos : req.body.photos
         })
         .then(data=> res.status(201).json({data}))
