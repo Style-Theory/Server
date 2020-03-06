@@ -1,8 +1,36 @@
 const { Dress } = require('../models')
+const {Op} = require('sequelize')
 
 class DressController {
     static findAll(req, res, next) {
         Dress.findAll({
+            where : {
+                UserId : {[Op.notLike] : req.headers.UserId}
+            },
+            order : [['id', 'ASC']]
+        })
+            .then(data=> res.status(200).json({data}))
+            .catch(err=> next({
+                name : `Couldn't Find Any Data`
+            }))
+    }
+    static findMyStuff(req, res, next) {
+        Dress.findAll({
+            where : {
+                UserId : {[Op.like] : req.headers.UserId}
+            },
+            order : [['id', 'ASC']]
+        })
+            .then(data=> res.status(200).json({data}))
+            .catch(err=> next({
+                name : `Couldn't Find Any Data`
+            }))
+    }
+    static findMyRent(req, res, next) {
+        Dress.findAll({
+            where : {
+                rent_id : {[like] : req.headers.UserId}
+            },
             order : [['id', 'ASC']]
         })
             .then(data=> res.status(200).json({data}))
@@ -15,7 +43,7 @@ class DressController {
             name : req.body.name,
             price : req.body.price,
             due_date : req.body.due_date,
-            UserId : req.UserId
+            UserId : req.headers.UserId
         })
         .then(data=> res.status(201).json({data}))
         .catch(err=> {

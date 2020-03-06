@@ -18,7 +18,8 @@ module.exports = {
       },
       status: {
         type: Sequelize.BOOLEAN,
-        notNull:true
+        notNull:true,
+        defaultValue : false
       },
       due_date: {
         type: Sequelize.DATE

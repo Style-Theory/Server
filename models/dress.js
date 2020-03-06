@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       type : DataTypes.INTEGER,
       allowNull : false,
       validate : {
-        isInteger : {
+        isInt : {
           args : true,
           msg : "Only Numbber Allowed"
         },
