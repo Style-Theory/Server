@@ -72,3 +72,36 @@
 
   * **Code:** 500 Internal Server Error <br />
     **Content:** `{ "message" : 'Internal Server Error' }`
+
+# 
+**Login Google**
+----
+
+* **URL**
+
+  /loginGoogle
+
+* **Method:**
+
+  `POST`
+
+* **Data Body**
+
+    `id_token:[string]` <br />
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** 
+    ```
+    {
+        "id": 11,
+        "email": "testing10@gmail.com",
+        "name": "testing10",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImVtYWlsIjoidGVzdGluZzlAbWFpbC5jb20iLCJpYXQiOjE1ODM0NzU3ODcsImV4cCI6MTU4MzQ3NjA4N30.qvOVrQVsUDVhc3ItUIho4Tn3gwlXAMBPU5xY2Bl9TKY"
+    }
+ 
+* **Error Response:**
+
+  * **Code:** 500 Internal Server Error <br />
+    **Content:** `{ "message" : 'Internal Server Error' }`
