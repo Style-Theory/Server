@@ -5,7 +5,8 @@ class DressController {
     static findAll(req, res, next) {
         Dress.findAll({
             where : {
-                UserId : {[Op.not]: req.UserId}
+                UserId : {[Op.not]: req.UserId},
+                status: false
             },
             order : [['id', 'ASC']]
         })
@@ -93,6 +94,7 @@ class DressController {
             })
     }
     static rent(req, res, next){
+        console.log('haha')
         Dress.findOne({
             where: {id:req.params.id}
         })
@@ -102,7 +104,8 @@ class DressController {
                 }
                 else return Dress.update({
                     status : true,
-                    due_date: req.body.due_date.toDateString()
+                    due_date: req.body.due_date,
+                    rent_id: req.UserId
                 },{
                     where : {id:req.params.id}
                 })
@@ -115,6 +118,7 @@ class DressController {
             })
     }
     static destroy(req, res, next){
+        console.log('wkwk')
         Dress.destroy({
             where: {id:req.params.id}
         })

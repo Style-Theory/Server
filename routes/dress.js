@@ -9,7 +9,8 @@ router.get('/mystuff', Dress.findMyStuff)
 router.get('/myorder', Dress.findMyRent)
 router.post('/', Dress.create)
 router.put('/:id', authorize, Dress.update)
-router.patch('/:id', Dress.rent)
+router.get('/:id', Dress.findOne)
+router.put('/rent/:id', Dress.rent)
 router.delete('/:id', authorize, Dress.destroy)
 
 module.exports = router
