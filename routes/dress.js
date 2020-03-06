@@ -3,8 +3,8 @@ const Dress = require('../controllers/dress')
 const authentication = require('../middlewares/authentication').authentication
 const authorize = require('../middlewares/authorization')
 
-router.get('/', Dress.findAll)
 router.use(authentication);
+router.get('/', Dress.findAll)
 router.get('/mystuff', Dress.findMyStuff)
 router.get('/myorder', Dress.findMyRent)
 router.post('/', Dress.create)
