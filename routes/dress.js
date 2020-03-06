@@ -1,9 +1,15 @@
 const router = require('express').Router();
 const Dress = require('../controller/dress')
+const {authentication, authorize} = require('../middlewares')
 
+
+router.use(authentication);
 router.get('/', Dress.findAll)
+router.get('/mystuff', Dress.findAll)
+router.get('/myorder', Dress.findAll)
 router.post('/', Dress.create)
-router.patch('/:id', Dress.update)
-router.delete('/:id', Dress.destroy)
+router.put('/:id', authorize, Dress.update)
+router.patch('/:id', Dress.rent)
+router.delete('/:id', authorize, Dress.destroy)
 
 module.exports = router

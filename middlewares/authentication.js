@@ -22,11 +22,11 @@ module.exports = {
                     status: 401,
                     message:'Forbidden Access'
                 }
-                throw error
+                next(error)
             });
         }
         catch(err) {
-            res.status(401).json({message:'forbidden access'})
+            next({message:'forbidden access'})
         }
     }
 }

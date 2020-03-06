@@ -11,39 +11,39 @@ class DressController {
         })
             .then(data=> res.status(200).json({data}))
             .catch(err=> next({
-                name : `Couldn't Find Any Data`
+                message : `Couldn't Find Any Data`
             }))
     }
     static findMyStuff(req, res, next) {
         Dress.findAll({
             where : {
-                UserId : {[Op.like] : req.headers.UserId}
+                UserId : req.headers.UserId
             },
             order : [['id', 'ASC']]
         })
             .then(data=> res.status(200).json({data}))
             .catch(err=> next({
-                name : `Couldn't Find Any Data`
+                message : `Couldn't Find Any Data`
             }))
     }
     static findMyRent(req, res, next) {
         Dress.findAll({
             where : {
-                rent_id : {[like] : req.headers.UserId}
+                rent_id : req.headers.UserId
             },
             order : [['id', 'ASC']]
         })
             .then(data=> res.status(200).json({data}))
             .catch(err=> next({
-                name : `Couldn't Find Any Data`
+                message : `Couldn't Find Any Data`
             }))
     }
     static create(req, res, next){
         Dress.create({
             name : req.body.name,
             price : req.body.price,
-            due_date : req.body.due_date,
-            UserId : req.headers.UserId
+            UserId : req.headers.UserId,
+            photos : req.body.photos
         })
         .then(data=> res.status(201).json({data}))
         .catch(err=> {
@@ -59,7 +59,7 @@ class DressController {
                     res.status(200).json({data})
                 } else {
                     next({
-                        name: 'empty'
+                        message: 'empty'
                     })
                 }
                 })
@@ -71,10 +71,33 @@ class DressController {
         })
             .then(data => {
                 if (data == null) {
-                    throw ({name : 'empty'})
+                    throw ({message : 'empty'})
                 }
                 else return Dress.update({
-                    status : req.params.status,
+                    name : req.body.name,
+                    price : req.body.price,
+                    photos : req.body.photos
+                },{
+                    where : {id:req.params.id}
+                })
+            })
+            .then(data=> {
+                res.status(200).json({data})
+            })
+            .catch(err=> {
+                next(err)
+            })
+    }
+    static rent(req, res, next){
+        Dress.findOne({
+            where: {id:req.params.id}
+        })
+            .then(data => {
+                if (data == null) {
+                    throw ({message : 'empty'})
+                }
+                else return Dress.update({
+                    status : true,
                     due_date: req.body.due_date.toDateString()
                 },{
                     where : {id:req.params.id}
@@ -88,14 +111,13 @@ class DressController {
             })
     }
     static destroy(req, res, next){
-        console.log('ada disini')
         Dress.destroy({
             where: {id:req.params.id}
         })
             .then(data => {
                 if (data == 0) {
                     next({
-                        name: 'empty'
+                        message: 'empty'
                     })
                 }
                 else res.status(200).json({message:`Success Delete Data Id = ${req.params.id}`})
