@@ -51,7 +51,7 @@
 
   `POST`
 
-* **Data Params**
+* **Data Body**
 
     `email:[string]` <br />
     `password:[string]` <br />
