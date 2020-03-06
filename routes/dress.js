@@ -5,6 +5,8 @@ const {authentication, authorize} = require('../middlewares')
 
 router.use(authentication);
 router.get('/', Dress.findAll)
+router.get('/mystuff', Dress.findAll)
+router.get('/myorder', Dress.findAll)
 router.post('/', Dress.create)
 router.put('/:id', authorize, Dress.update)
 router.patch('/:id', Dress.rent)

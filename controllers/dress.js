@@ -17,7 +17,7 @@ class DressController {
     static findMyStuff(req, res, next) {
         Dress.findAll({
             where : {
-                UserId : {[Op.like] : req.headers.UserId}
+                UserId : req.headers.UserId
             },
             order : [['id', 'ASC']]
         })
@@ -29,7 +29,7 @@ class DressController {
     static findMyRent(req, res, next) {
         Dress.findAll({
             where : {
-                rent_id : {[like] : req.headers.UserId}
+                rent_id : req.headers.UserId
             },
             order : [['id', 'ASC']]
         })
