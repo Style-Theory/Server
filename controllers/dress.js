@@ -47,6 +47,7 @@ class DressController {
             name : req.body.name,
             price : req.body.price,
             UserId : req.UserId,
+            status : false,
             photos : req.body.photos
         })
         .then(data=> res.status(201).json({data}))
